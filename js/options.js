@@ -148,6 +148,7 @@ $(function($) {
       }).appendTo(spaninputbtnrefresh).append($('<span/>', {class:'glyphicon glyphicon-refresh'}));
       // shadow option end
 
+      // text color start
       if(arcInputs.length === 1) {
         var divoptionrow = $('<div/>', {class:'option-row text-color'}).appendTo(divoptions);
         $('<label/>', {class:'checkbox-inline', text:'Show Text:'}).appendTo(divoptionrow)
@@ -179,7 +180,9 @@ $(function($) {
           'data-type':'refresh',
           'data-field':titleArr[0].toLowerCase()+titleArr[1].toLowerCase()+'_'+'text-color'
         }).appendTo(spaninputbtnrefresh).append($('<span/>', {class:'glyphicon glyphicon-refresh'}));
+        // text color end
 
+        // show sub-text start
         var divoptionrow = $('<div/>', {class:'option-row sub-text'}).appendTo(divoptions)
         $('<label/>', {class:'checkbox-inline', text:'Subtext:'}).appendTo(divoptionrow)
         .append($('<input/>', {
@@ -210,6 +213,40 @@ $(function($) {
           'data-type':'refresh',
           'data-field':titleArr[0].toLowerCase()+titleArr[1].toLowerCase()+'_'+'subtext-units'
         }).appendTo(spaninputbtnrefresh).append($('<span/>', {class:'glyphicon glyphicon-refresh'}));
+        // show sub-text end
+
+        // text postfix start
+        var divoptionrow = $('<div/>', {class:'option-row text-postfix'}).appendTo(divoptions)
+        $('<label/>', {class:'checkbox-inline', text:'Postfix:'}).appendTo(divoptionrow)
+        .append($('<input/>', {
+          class:'text-checkbox',
+          'type':'checkbox',
+          'value':'',
+          'arc-id':'#'+arcId,
+          'checked':false
+        }).attr('data','enable-postfix'));
+        $('<div/>', {class:'text', text:'Text:'}).appendTo(divoptionrow);
+        
+        var divinputarea = $('<div/>', {class:'input-area'}).appendTo(divoptionrow);
+        var divinputgroup = $('<div/>', {class:'input-group'}).appendTo(divinputarea);
+        var inputbox = $('<input/>', {
+          class:'form-control input-number single-input',
+          'type':'text',
+          'name':titleArr[0].toLowerCase()+titleArr[1].toLowerCase()+'_'+'postfix-text',
+          'default-val':$('.postfix-text').text(),
+          'value':$('.postfix-text').text(),
+          'arc-id':'#'+arcId,
+          'data-mod':'postfix'
+        }).appendTo(divinputgroup);
+
+        var spaninputbtnrefresh = $('<span/>', {class:'input-group-btn'}).appendTo(divinputgroup);
+        var btnrefresh = $('<button/>', {
+          class:'btn btn-refresh',
+          'type':'button',
+          'data-type':'refresh',
+          'data-field':titleArr[0].toLowerCase()+titleArr[1].toLowerCase()+'_'+'postfix-text'
+        }).appendTo(spaninputbtnrefresh).append($('<span/>', {class:'glyphicon glyphicon-refresh'}));
+        // text postfix end
       }
     }
   }

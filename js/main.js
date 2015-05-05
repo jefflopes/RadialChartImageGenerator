@@ -37,6 +37,13 @@ $(function($) {
             } else if($(this).attr('data') == 'only-subtext') {
                 $('.subtext').removeClass('hidden');
                 $($(this).attr('arc-id')).addClass('with-subtext');
+            } else if($(this).attr('data') == 'enable-postfix') {
+                $('.knob').trigger('configure', {
+                    'format' : function (v) {
+                        return v + $('.postfix-text').text();
+                    }
+                });
+                $('.knob').trigger('change');
             }
         } else {
             if($(this).attr('data') == 'all-text') {
@@ -46,6 +53,13 @@ $(function($) {
             } else if($(this).attr('data') == 'only-subtext') {
                 $('.subtext').addClass('hidden');
                 $($(this).attr('arc-id')).removeClass('with-subtext');
+            } else if($(this).attr('data') == 'enable-postfix') {
+                $('.knob').trigger('configure', {
+                    'format' : function (v) {
+                        return v;
+                    }
+                });
+                $('.knob').trigger('change');
             }
         }
     });
@@ -261,6 +275,14 @@ function changeArc(arcId, dataChange, value, doNotLog) {
         return;
     } else if (dataChange === 'units') {
         $('.subtext-units').text(value);
+        return;
+    } else if (dataChange === 'postfix') {
+        $('.knob').trigger('configure', {
+            'format' : function (v) {
+                return v + value;
+            }
+        });
+        $('.knob').trigger('change');
         return;
     }
     obj['inputColor'] = color;
